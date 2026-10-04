@@ -47,4 +47,5 @@ streamlit run app.py
 python -m backend.main
 ```
 
-Open **[http://localhost:8501](http://localhost:8501)** in your browser!
+Open **[http://localhost:8501](http://localhost:8501)** in your browser
+live demo:https://studymate-rag-kmlrhcbqe4kmxazhw4sbfb.streamlit.app/
