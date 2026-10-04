@@ -1,0 +1,3 @@
+"""
+StudyMate-RAG Backend Package
+"""

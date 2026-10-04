@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  fastapi-backend:
+    build: .
+    container_name: studymate-backend
+    command: python -m backend.main
+    ports:
+      - "8000:8000"
+    environment:
+      - BACKEND_HOST=0.0.0.0
+      - BACKEND_PORT=8000
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./chroma_db:/app/chroma_db
+
+  streamlit-frontend:
+    build: .
+    container_name: studymate-frontend
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - FASTAPI_URL=http://fastapi-backend:8000
+    depends_on:
+      - fastapi-backend
+    volumes:
+      - ./chroma_db:/app/chroma_db
